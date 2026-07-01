@@ -1,0 +1,30 @@
+{
+  "id": "markdown",
+  "releases": [
+    {
+      "version": "0.0.1",
+      "min_sdk_version": "0.5.0",
+      "abi_fingerprint": "0x0146eaf7c2f9605a",
+      "fizzy_sdk_version": "0.5.0",
+      "published": "2026-06-26",
+      "downloads": {
+        "macos-aarch64": {
+          "url": "https://github.com/foxnne/markdown/releases/download/v0.0.1-sdk0.5.0/markdown-macos-aarch64.dylib",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "macos-x86_64": {
+          "url": "https://github.com/foxnne/markdown/releases/download/v0.0.1-sdk0.5.0/markdown-macos-x86_64.dylib",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "linux-x86_64": {
+          "url": "https://github.com/foxnne/markdown/releases/download/v0.0.1-sdk0.5.0/markdown-linux-x86_64.so",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "windows-x86_64": {
+          "url": "https://github.com/foxnne/markdown/releases/download/v0.0.1-sdk0.5.0/markdown-windows-x86_64.dll",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      }
+    }
+  ]
+}

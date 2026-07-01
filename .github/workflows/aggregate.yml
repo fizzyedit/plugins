@@ -1,0 +1,66 @@
+name: Aggregate registry
+
+# Rebuilds plugins/index.json from the author manifests and publishes it to GitHub Pages.
+# Triggers: a registry/script change (reviewed PR merge), a periodic refresh so author
+# manifest updates land without a commit here, and manual runs. The path filter excludes
+# plugins/** so the index commit-back below never re-triggers the workflow.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "registry/**"
+      - "scripts/aggregate.py"
+      - ".github/workflows/aggregate.yml"
+  schedule:
+    - cron: "17 */6 * * *" # every 6 hours
+  workflow_dispatch:
+
+# Allow committing the regenerated index and deploying Pages.
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Aggregate author manifests into plugins/index.json
+        run: python3 scripts/aggregate.py
+
+      - name: Commit index.json if it changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- plugins/index.json; then
+            git add plugins/index.json
+            git commit -m "chore: refresh plugins/index.json"
+            git push
+          else
+            echo "index.json unchanged"
+          fi
+
+      - name: Upload Pages artifact (the plugins/ directory)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: plugins
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
