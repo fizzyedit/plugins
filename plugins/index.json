@@ -1,5 +1,52 @@
 {
   "schema": 1,
-  "generated": "2026-06-26T14:50:52+00:00",
-  "plugins": []
+  "generated": "2026-07-01T16:28:31+00:00",
+  "plugins": [
+    {
+      "id": "pixi",
+      "name": "Pixi",
+      "description": "Pixel-art editor: sprite and atlas editing for Fizzy.",
+      "author": "foxnne",
+      "homepage": "https://github.com/fizzyedit/pixi",
+      "tags": [
+        "editor",
+        "pixel-art"
+      ],
+      "releases": [
+        {
+          "version": "0.1.0",
+          "min_sdk_version": "0.7.0",
+          "abi_fingerprint": "0x1bb54eb7506cbd78",
+          "fizzy_sdk_version": "0.7.0",
+          "published": "2026-07-01",
+          "downloads": {
+            "linux-aarch64": {
+              "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.0/pixi-linux-aarch64.so",
+              "sha256": "a38543a71dee5498690370ddfae418282d990f780cb747a770d6eb795e23ab86"
+            },
+            "linux-x86_64": {
+              "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.0/pixi-linux-x86_64.so",
+              "sha256": "96917ef7d0bf250e3b9009de7b3b005dd2367c3b715554ac34d3fcfa0084916c"
+            },
+            "macos-aarch64": {
+              "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.0/pixi-macos-aarch64.dylib",
+              "sha256": "86e20fe3e6094e2ec218ae6f8682bbfab5aee11498d5e9a9bc7947186a4474cc"
+            },
+            "macos-x86_64": {
+              "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.0/pixi-macos-x86_64.dylib",
+              "sha256": "cf15730636cbed335774fdb86ed1a3fd680976802bdbd678cbd7c5ae9423c190"
+            },
+            "windows-aarch64": {
+              "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.0/pixi-windows-aarch64.dll",
+              "sha256": "b7f95e7bb4ef05c0fbb1eb7b7e0db83e0e2e937edad7753bb6fd83238fdcc995"
+            },
+            "windows-x86_64": {
+              "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.0/pixi-windows-x86_64.dll",
+              "sha256": "d2856ebfc66d34de27fdc879635d44c4274e05f41b3ce893580715c747bb9f55"
+            }
+          }
+        }
+      ]
+    }
+  ]
 }
