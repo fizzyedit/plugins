@@ -11,7 +11,6 @@ const std = @import("std");
 
 const db_mod = @import("db.zig");
 const catalog = @import("catalog.zig");
-const time_fmt = @import("time_fmt.zig");
 
 const Options = struct {
     db_path: []const u8 = "registry.db",
@@ -44,19 +43,16 @@ pub fn run(allocator: std.mem.Allocator, io: std.Io, args: []const []const u8) !
     var database = try db_mod.open(db_path_z);
     defer database.deinit();
 
-    const generated = try time_fmt.nowIso8601(allocator, io);
-    defer allocator.free(generated);
-
     var arena_state = std.heap.ArenaAllocator.init(allocator);
     defer arena_state.deinit();
     const arena = arena_state.allocator();
 
-    const summary = try buildSummary(arena, &database, generated);
+    const summary = try buildSummary(arena, &database);
     try writeJson(allocator, io, opts.out_dir, "summary.json", summary);
 
     const fingerprints = try listFingerprints(arena, &database);
     for (fingerprints) |fp| {
-        const shard = try buildShard(arena, &database, fp, generated);
+        const shard = try buildShard(arena, &database, fp);
         const rel_path = try std.fmt.allocPrint(arena, "{s}/releases.json", .{fp});
         try writeJson(allocator, io, opts.out_dir, rel_path, shard);
     }
@@ -84,7 +80,7 @@ const PluginRow = struct {
     date_added: []const u8,
 };
 
-pub fn buildSummary(arena: std.mem.Allocator, database: *db_mod.Db, generated: []const u8) !catalog.Summary {
+pub fn buildSummary(arena: std.mem.Allocator, database: *db_mod.Db) !catalog.Summary {
     var stmt = try database.prepare(
         "SELECT id, name, description, author, homepage, date_added FROM plugins ORDER BY id",
     );
@@ -105,7 +101,22 @@ pub fn buildSummary(arena: std.mem.Allocator, database: *db_mod.Db, generated: [
         });
     }
 
-    return .{ .generated = generated, .plugins = entries.items };
+    return .{ .generated = try lastIngestAt(arena, database), .plugins = entries.items };
+}
+
+/// The most recent successful ingest across every plugin, derived from data (`plugins.last_ok_at`)
+/// rather than wall-clock "now". This is what makes re-exporting idempotent: a run with no new
+/// ingest activity produces byte-identical `summary.json`, so `aggregate.yml`'s
+/// `git diff --quiet` correctly sees "nothing changed" instead of committing on every scheduled
+/// run just because a timestamp ticked forward.
+fn lastIngestAt(arena: std.mem.Allocator, database: *db_mod.Db) ![]const u8 {
+    return try database.oneAlloc(
+        []const u8,
+        arena,
+        "SELECT COALESCE(MAX(last_ok_at), '') FROM plugins",
+        .{},
+        .{},
+    ) orelse "";
 }
 
 fn loadTags(arena: std.mem.Allocator, database: *db_mod.Db, plugin_id: []const u8) ![]const []const u8 {
@@ -151,20 +162,27 @@ pub fn buildShard(
     arena: std.mem.Allocator,
     database: *db_mod.Db,
     abi_fingerprint: []const u8,
-    generated: []const u8,
 ) !catalog.ReleaseShard {
     var plugin_ids_stmt = try database.prepare("SELECT id FROM plugins ORDER BY id");
     defer plugin_ids_stmt.deinit();
     const plugin_ids = try plugin_ids_stmt.all([]const u8, arena, .{}, .{});
 
     var releases: std.StringArrayHashMapUnmanaged(catalog.ShardRelease) = .empty;
+    // Newest `published` date among the releases actually written into this shard — like
+    // `lastIngestAt`, derived from data rather than wall-clock "now" so an unchanged shard
+    // re-exports byte-for-byte (see `lastIngestAt`'s doc comment). ISO "YYYY-MM-DD" strings
+    // compare correctly with plain lexicographic order.
+    var newest_published: []const u8 = "";
     for (plugin_ids) |plugin_id| {
         if (try bestRelease(arena, database, plugin_id, abi_fingerprint)) |release| {
             try releases.put(arena, plugin_id, release);
+            if (std.mem.order(u8, release.published, newest_published) == .gt) {
+                newest_published = release.published;
+            }
         }
     }
 
-    return .{ .generated = generated, .abi_fingerprint = abi_fingerprint, .releases = .{ .map = releases } };
+    return .{ .generated = newest_published, .abi_fingerprint = abi_fingerprint, .releases = .{ .map = releases } };
 }
 
 /// The newest (semver) release `plugin_id` has published for `abi_fingerprint`, with its
@@ -262,12 +280,40 @@ test "buildSummary lists plugins with tags and cross-fingerprint latest_version"
     var arena_state = std.heap.ArenaAllocator.init(std.testing.allocator);
     defer arena_state.deinit();
 
-    const summary = try buildSummary(arena_state.allocator(), &database, "2026-07-02T00:00:00Z");
+    const summary = try buildSummary(arena_state.allocator(), &database);
     try std.testing.expectEqual(@as(usize, 1), summary.plugins.len);
     try std.testing.expectEqualStrings("Pixi", summary.plugins[0].name);
     try std.testing.expectEqual(@as(usize, 2), summary.plugins[0].tags.len);
     try std.testing.expectEqualStrings("editor", summary.plugins[0].tags[0]);
     try std.testing.expectEqualStrings("0.10.0", summary.plugins[0].latest_version);
+}
+
+test "buildSummary.generated is stable across re-exports with no ingest activity" {
+    var database = try db_mod.openMemory();
+    defer database.deinit();
+
+    try database.exec(
+        "INSERT INTO plugins (id, name, manifest_url, date_added, last_ok_at) VALUES (?, ?, ?, ?, ?)",
+        .{},
+        .{ "pixi", "Pixi", "https://x/manifest.json", "2026-07-01", "2026-07-02" },
+    );
+
+    var arena_state = std.heap.ArenaAllocator.init(std.testing.allocator);
+    defer arena_state.deinit();
+    const arena = arena_state.allocator();
+
+    // Deliberately not passing wall-clock time in at all — re-exporting twice with the database
+    // untouched must produce the exact same `generated` value, or the CI "commit only if
+    // changed" check in aggregate.yml would fire on every scheduled run for no reason.
+    const first = try buildSummary(arena, &database);
+    const second = try buildSummary(arena, &database);
+    try std.testing.expectEqualStrings(first.generated, second.generated);
+    try std.testing.expectEqualStrings("2026-07-02", first.generated);
+
+    // A fresh ingest for some plugin (last_ok_at moves forward) is exactly what *should* change it.
+    try database.exec("UPDATE plugins SET last_ok_at = ? WHERE id = ?", .{}, .{ "2026-07-03", "pixi" });
+    const after_reingest = try buildSummary(arena, &database);
+    try std.testing.expectEqualStrings("2026-07-03", after_reingest.generated);
 }
 
 test "buildSummary leaves latest_version empty for a plugin with no releases" {
@@ -283,7 +329,7 @@ test "buildSummary leaves latest_version empty for a plugin with no releases" {
     var arena_state = std.heap.ArenaAllocator.init(std.testing.allocator);
     defer arena_state.deinit();
 
-    const summary = try buildSummary(arena_state.allocator(), &database, "2026-07-02T00:00:00Z");
+    const summary = try buildSummary(arena_state.allocator(), &database);
     try std.testing.expectEqualStrings("", summary.plugins[0].latest_version);
 }
 
@@ -323,13 +369,13 @@ test "buildShard picks the semver-newest release per plugin, not lexicographic" 
     const fingerprints = try listFingerprints(arena, &database);
     try std.testing.expectEqual(@as(usize, 2), fingerprints.len);
 
-    const shard = try buildShard(arena, &database, "0xabc", "2026-07-02T00:00:00Z");
+    const shard = try buildShard(arena, &database, "0xabc");
     try std.testing.expectEqual(@as(usize, 1), shard.releases.map.count());
     const release = shard.releases.map.get("pixi") orelse return error.MissingRelease;
     try std.testing.expectEqualStrings("0.10.0", release.version);
     try std.testing.expectEqual(@as(usize, 1), release.downloads.map.count());
 
-    const old_shard = try buildShard(arena, &database, "0xold", "2026-07-02T00:00:00Z");
+    const old_shard = try buildShard(arena, &database, "0xold");
     const old_release = old_shard.releases.map.get("pixi") orelse return error.MissingRelease;
     try std.testing.expectEqualStrings("0.1.0", old_release.version);
 }
@@ -348,6 +394,40 @@ test "buildShard omits a plugin with no release for that fingerprint" {
     var arena_state = std.heap.ArenaAllocator.init(std.testing.allocator);
     defer arena_state.deinit();
 
-    const shard = try buildShard(arena_state.allocator(), &database, "0xabc", "2026-07-02T00:00:00Z");
+    const shard = try buildShard(arena_state.allocator(), &database, "0xabc");
     try std.testing.expectEqual(@as(usize, 0), shard.releases.map.count());
+}
+
+test "buildShard.generated tracks the newest published release, not wall-clock time" {
+    var database = try db_mod.openMemory();
+    defer database.deinit();
+
+    try database.exec(
+        "INSERT INTO plugins (id, name, manifest_url, date_added) VALUES (?, ?, ?, ?)",
+        .{},
+        .{ "pixi", "Pixi", "https://x/manifest.json", "2026-07-01" },
+    );
+    try database.exec(
+        "INSERT INTO releases (plugin_id, version, abi_fingerprint, min_sdk_version, fizzy_sdk_version, published) VALUES (?, ?, ?, ?, ?, ?)",
+        .{},
+        .{ "pixi", "0.1.0", "0xabc", "0.9.0", "0.9.0", "2026-07-01" },
+    );
+
+    var arena_state = std.heap.ArenaAllocator.init(std.testing.allocator);
+    defer arena_state.deinit();
+    const arena = arena_state.allocator();
+
+    const first = try buildShard(arena, &database, "0xabc");
+    const second = try buildShard(arena, &database, "0xabc");
+    try std.testing.expectEqualStrings(first.generated, second.generated);
+    try std.testing.expectEqualStrings("2026-07-01", first.generated);
+
+    // A newer release for the same fingerprint should move `generated` forward.
+    try database.exec(
+        "INSERT INTO releases (plugin_id, version, abi_fingerprint, min_sdk_version, fizzy_sdk_version, published) VALUES (?, ?, ?, ?, ?, ?)",
+        .{},
+        .{ "pixi", "0.2.0", "0xabc", "0.9.0", "0.9.0", "2026-07-05" },
+    );
+    const after_new_release = try buildShard(arena, &database, "0xabc");
+    try std.testing.expectEqualStrings("2026-07-05", after_new_release.generated);
 }

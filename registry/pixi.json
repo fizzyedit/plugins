@@ -1,7 +1,7 @@
 {
   "id": "pixi",
   "name": "Pixi",
-  "description": "Pixel-art editor: sprite and atlas editing for Fizzy.",
+  "description": "Pixel-art editor: sprite and atlas editing for fizzy.",
   "author": "foxnne",
   "homepage": "https://github.com/fizzyedit/pixi",
   "tags": ["editor", "pixel-art"],

@@ -31,12 +31,21 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Pinned so the workaround below targets a known path. Works around a Zig 0.16.0 bug where
+      # `zig fetch` fails on zip dependencies (e.g. zig-sqlite's sqlite-amalgamation-*.zip) with
+      # "failed to create temporary zip file: FileNotFound" when the global cache's tmp/ dir
+      # doesn't exist yet (fresh runner). See https://codeberg.org/ziglang/zig/issues/35264.
+      ZIG_GLOBAL_CACHE_DIR: ${{ github.workspace }}/.zig-global-cache
     steps:
       - uses: actions/checkout@v4
 
       - uses: mlugg/setup-zig@v2
         with:
           version: "0.16.0"
+
+      - name: Work around zig fetch zip bug (codeberg.org/ziglang/zig#35264)
+        run: mkdir -p "$ZIG_GLOBAL_CACHE_DIR/tmp"
 
       - name: Build the store tool
         working-directory: store
