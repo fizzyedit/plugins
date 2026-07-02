@@ -1,0 +1,17 @@
+.{
+    .name = .fizzy_plugin_store,
+    .version = "0.1.0",
+    .minimum_zig_version = "0.16.0",
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+    .fingerprint = 0x3adcd65fc7486100,
+    .dependencies = .{
+        .sqlite = .{
+            .url = "git+https://github.com/vrischmann/zig-sqlite#946d77c526258760b52836187af32d1a192c5d36",
+            .hash = "sqlite-3.48.0-F2R_azCQDgBGaWDIX4g2vxKpuqzYEQOOfAeJGMNocPu0",
+        },
+    },
+}
