@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "generated": "2026-07-02T18:54:07Z",
+  "plugins": [
+    {
+      "id": "pixi",
+      "name": "Pixi",
+      "description": "Pixel-art editor: sprite and atlas editing for Fizzy.",
+      "author": "foxnne",
+      "homepage": "https://github.com/fizzyedit/pixi",
+      "tags": [
+        "editor",
+        "pixel-art"
+      ],
+      "date_added": "2026-07-02",
+      "latest_version": "0.1.4"
+    }
+  ]
+}

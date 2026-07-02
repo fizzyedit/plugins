@@ -3,20 +3,28 @@ name: Validate registry
 # Runs on PRs that add or change a registry entry. Validates every registry/<id>.json (a
 # malformed entry — bad JSON, missing keys, id≠filename — fails the check) and attempts to
 # fetch the referenced manifests, reporting any that are unreachable as warnings (network is
-# flaky, so manifest reachability does not fail the build). Does not write index.json.
+# flaky and manifest hosting is the author's, so reachability does not fail the build).
+# Never touches registry.db and writes nothing.
 on:
   pull_request:
     paths:
       - "registry/**"
-      - "scripts/aggregate.py"
+      - "store/**"
 
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+
+      - uses: mlugg/setup-zig@v2
         with:
-          python-version: "3.x"
+          version: "0.16.0"
+
+      - name: Run store unit tests
+        working-directory: store
+        run: zig build test
+
       - name: Validate registry entries + manifests
-        run: python3 scripts/aggregate.py --check
+        working-directory: store
+        run: zig build run -- validate --root ..

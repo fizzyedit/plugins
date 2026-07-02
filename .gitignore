@@ -1,0 +1,4 @@
+store/.zig-cache/
+store/zig-pkg/
+store/zig-cache/
+store/zig-out/

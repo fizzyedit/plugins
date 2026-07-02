@@ -4,15 +4,21 @@ The curated **plugin registry** for the [Fizzy](https://github.com/fizzyedit/fiz
 
 This repo is a *decentralized* registry. It **builds nothing and hosts no binaries**. Each
 plugin is registered once with a small JSON file that points at the author's own
-self-hosted `manifest.json`; a scheduled workflow fetches all the manifests and merges them
-into a single `plugins/index.json`, published to GitHub Pages at
-**<https://plugins.fizzyed.it/index.json>** — which Fizzy's in-app **Plugins** tab reads.
+self-hosted `manifest.json`; a scheduled workflow fetches all the manifests into a SQLite
+database (`registry.db`, the durable source of truth) and exports a static **catalog**,
+published to GitHub Pages at **<https://plugins.fizzyed.it/catalog/>** — which Fizzy's
+in-app **Plugins** tab reads.
 
 ```
-registry/<id>.json     ← you submit this once (a pointer to your manifest)
-        │  aggregate.py fetches each manifest_url, merges releases
+registry/<id>.json        ← you submit this once (a pointer to your manifest)
+        │  store ingest — fetches each manifest_url concurrently, upserts
         ▼
-plugins/index.json     ← generated + served via Pages; the app reads this
+registry.db               ← durable history; an author outage keeps last-known-good
+        │  store export
+        ▼
+plugins/catalog/summary.json                      ← every plugin's browse metadata (no releases)
+plugins/catalog/<abi_fingerprint>/releases.json   ← one shard per SDK generation; at most one
+                                                    release per plugin (the newest for that ABI)
 ```
 
 ## Why this shape
@@ -22,7 +28,13 @@ A prebuilt Fizzy plugin is a native dylib valid for exactly one
 fingerprint changes only on a deliberate Fizzy **SDK** bump (not on every app release), so
 authors rebuild rarely. Authors host their own binaries and republish their `manifest.json`
 on each release (and on each SDK bump); this registry just aggregates. One author's outage
-never affects another — the aggregator retains the last-known-good entry.
+never affects another — `registry.db` retains the last-known-good rows, and release history
+is never lost even if an author's manifest drops old entries.
+
+The catalog is **split by fingerprint** so the app's payload stays bounded as the registry
+grows: the browse list fetches only `summary.json` (~a few hundred bytes per plugin, no
+release data), and each Fizzy build fetches only its *own* fingerprint's shard — which by
+construction holds at most one release per plugin, never the full version history.
 
 ## Publishing a plugin
 
@@ -51,11 +63,12 @@ never affects another — the aggregator retains the last-known-good entry.
    ```
 
    - One `releases[]` entry **per `(version, abi_fingerprint)`** — i.e. add a new entry each
-     time you rebuild against a new Fizzy SDK; never rewrite history.
+     time you rebuild against a new Fizzy SDK; never rewrite history. (The registry keeps a
+     durable copy regardless, so users on older SDKs keep matching an older binary.)
    - `downloads` keys are `os-arch`: `macos-aarch64`, `macos-x86_64`, `linux-x86_64`,
-     `windows-x86_64`.
+     `linux-aarch64`, `windows-x86_64`, `windows-aarch64`.
    - `abi_fingerprint` and `sha256` are how the app picks a loadable, verified binary. The
-     app shows your plugin as *"needs a rebuild for Fizzy SDK x.y"* until a release matches the
+     app shows your plugin as *"no compatible build in store"* until a release matches the
      user's fingerprint. See [`docs/manifest.example.json`](docs/manifest.example.json).
 
 3. **Open a PR** adding `registry/<your-id>.json`:
@@ -74,23 +87,37 @@ never affects another — the aggregator retains the last-known-good entry.
 
    - Required: `id` (must equal the filename stem and your `manifest.id`), `name`,
      `manifest_url`. Optional: `description`, `author`, `homepage`, `tags`.
-   - The PR runs [`validate.yml`](.github/workflows/validate.yml), which checks the entry and
-     attempts to fetch your manifest.
+   - Plugin **ids are globally unique** — the filename convention and the database's
+     primary key both enforce it, so pick a non-conflicting id.
+   - The PR runs [`validate.yml`](.github/workflows/validate.yml), which checks the entry
+     structurally (hard fail) and attempts to fetch your manifest (warning only — your
+     hosting being briefly down doesn't block the PR).
 
 Once merged, the next aggregation run (on merge, every 6h, or manual) pulls your manifest into
-`index.json`. Update your plugin by republishing **your** `manifest.json` — no PR needed.
+the catalog. Update your plugin by republishing **your** `manifest.json` — no PR needed.
 
 ## Files
 
 | Path | Role |
 |------|------|
 | `registry/<id>.json` | Author registration (a pointer to `manifest_url`). |
-| `scripts/aggregate.py` | Fetches manifests, validates, merges into `plugins/index.json` (stdlib only). |
-| `plugins/index.json` | Generated aggregate index, served via Pages. |
+| `store/` | The registry tool (Zig + SQLite): `ingest` / `export` / `validate`. |
+| `registry.db` | Generated SQLite database — durable plugin/release history (committed by CI). |
+| `plugins/catalog/` | Generated static catalog, served via Pages; the app reads this. |
 | `plugins/{CNAME,index.html}` | Custom domain + a human landing page. |
-| `.github/workflows/aggregate.yml` | Scheduled/triggered regen + Pages deploy. |
+| `.github/workflows/aggregate.yml` | Scheduled/triggered ingest + export + Pages deploy. |
 | `.github/workflows/validate.yml` | PR validation of registry entries. |
 | `docs/manifest.example.json` | A complete example author manifest. |
+| `scripts/aggregate.py`, `plugins/index.json` | **Deprecated** flat-file pipeline, kept until the store workflow has a few green runs. |
 
-Run the aggregator locally: `python3 scripts/aggregate.py` (or `--check` to validate without
-writing). `file://` manifest URLs work for local testing.
+Run the tool locally (needs Zig 0.16, Linux/macOS):
+
+```sh
+cd store
+zig build test                                     # unit tests
+zig build run -- validate --root ..                # what the PR gate runs
+zig build run -- ingest --root .. --db ../registry.db
+zig build run -- export --db ../registry.db --out ../plugins/catalog
+```
+
+`file://` manifest URLs work in `ingest`/`validate` for local testing.

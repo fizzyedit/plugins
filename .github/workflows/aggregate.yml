@@ -1,21 +1,24 @@
 name: Aggregate registry
 
-# Rebuilds plugins/index.json from the author manifests and publishes it to GitHub Pages.
-# Triggers: a registry/script change (reviewed PR merge), a periodic refresh so author
-# manifest updates land without a commit here, and manual runs. The path filter excludes
-# plugins/** so the index commit-back below never re-triggers the workflow.
+# Ingests the author manifests into registry.db (the durable source of truth — a failed author
+# fetch keeps that plugin's last-known-good rows) and exports the static catalog the Fizzy app
+# fetches (plugins/catalog/summary.json + one plugins/catalog/<abi_fingerprint>/releases.json
+# shard per SDK generation), then publishes plugins/ to GitHub Pages. See store/ for the tool.
+# Triggers: a registry/store change (reviewed PR merge), a periodic refresh so author manifest
+# updates land without a commit here, and manual runs. The path filter excludes plugins/** and
+# registry.db so the commit-back below never re-triggers the workflow.
 on:
   push:
     branches: [main]
     paths:
       - "registry/**"
-      - "scripts/aggregate.py"
+      - "store/**"
       - ".github/workflows/aggregate.yml"
   schedule:
     - cron: "17 */6 * * *" # every 6 hours
   workflow_dispatch:
 
-# Allow committing the regenerated index and deploying Pages.
+# Allow committing the regenerated db + catalog and deploying Pages.
 permissions:
   contents: write
   pages: write
@@ -31,23 +34,32 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - uses: mlugg/setup-zig@v2
         with:
-          python-version: "3.x"
+          version: "0.16.0"
 
-      - name: Aggregate author manifests into plugins/index.json
-        run: python3 scripts/aggregate.py
+      - name: Build the store tool
+        working-directory: store
+        run: zig build -Doptimize=ReleaseSafe
 
-      - name: Commit index.json if it changed
+      - name: Ingest author manifests into registry.db
+        working-directory: store
+        run: ./zig-out/bin/store ingest --root .. --db ../registry.db
+
+      - name: Export the catalog (summary + per-fingerprint shards)
+        working-directory: store
+        run: ./zig-out/bin/store export --db ../registry.db --out ../plugins/catalog
+
+      - name: Commit registry.db + catalog if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet -- plugins/index.json; then
-            git add plugins/index.json
-            git commit -m "chore: refresh plugins/index.json"
+          git add registry.db plugins/catalog
+          if ! git diff --quiet --cached; then
+            git commit -m "chore: refresh registry.db + plugins/catalog"
             git push
           else
-            echo "index.json unchanged"
+            echo "registry.db and catalog unchanged"
           fi
 
       - name: Upload Pages artifact (the plugins/ directory)
