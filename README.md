@@ -9,6 +9,12 @@ database (`registry.db`, the durable source of truth) and exports a static **cat
 published to GitHub Pages at **<https://plugins.fizzyed.it/catalog/>** — which Fizzy's
 in-app **Plugins** tab reads.
 
+> For the full authoring tutorial — an empty Zig folder through the SDK contract to a tagged
+> release — see fizzy's
+> [`docs/PLUGINS.md`](https://github.com/fizzyedit/fizzy/blob/main/docs/PLUGINS.md) §6
+> "Publishing to the store". This repo covers only the registry/aggregation side of that
+> pipeline: registering an already-published plugin so the app can find it.
+
 ```
 registry/<id>.json        ← you submit this once (a pointer to your manifest)
         │  store ingest — fetches each manifest_url concurrently, upserts
