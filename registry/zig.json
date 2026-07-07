@@ -1,0 +1,10 @@
+{
+    "id": "zig",
+    "name": "Zig",
+    "description": "Zig language support for fizzy",
+    "author": "foxnne",
+    "homepage": "https://github.com/fizzyedit/zig",
+    "tags": ["zig", "language"],
+    "manifest_url": "https://github.com/fizzyedit/zig/releases/latest/download/manifest.json"
+  }
+  
