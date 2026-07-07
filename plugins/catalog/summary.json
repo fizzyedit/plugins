@@ -14,6 +14,19 @@
       ],
       "date_added": "2026-07-02",
       "latest_version": "0.1.7"
+    },
+    {
+      "id": "zig",
+      "name": "Zig",
+      "description": "Zig language support for fizzy",
+      "author": "foxnne",
+      "homepage": "https://github.com/fizzyedit/zig",
+      "tags": [
+        "language",
+        "zig"
+      ],
+      "date_added": "2026-07-07",
+      "latest_version": "0.1.0"
     }
   ]
 }
