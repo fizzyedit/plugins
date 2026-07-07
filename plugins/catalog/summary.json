@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated": "2026-07-02",
+  "generated": "2026-07-07",
   "plugins": [
     {
       "id": "pixi",
@@ -13,7 +13,7 @@
         "pixel-art"
       ],
       "date_added": "2026-07-02",
-      "latest_version": "0.1.6"
+      "latest_version": "0.1.7"
     }
   ]
 }
