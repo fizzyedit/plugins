@@ -1,0 +1,10 @@
+{
+    "id": "ghostty",
+    "name": "Ghostty",
+    "description": "Ghostty terminal emulator plugin for fizzy",
+    "author": "foxnne",
+    "homepage": "https://github.com/fizzyedit/ghostty",
+    "tags": ["terminal", "ghostty"],
+    "manifest_url": "https://github.com/fizzyedit/ghostty/releases/latest/download/manifest.json"
+  }
+  
