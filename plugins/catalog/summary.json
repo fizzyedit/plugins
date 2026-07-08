@@ -3,6 +3,19 @@
   "generated": "2026-07-08",
   "plugins": [
     {
+      "id": "ghostty",
+      "name": "Ghostty",
+      "description": "Ghostty terminal emulator plugin for fizzy",
+      "author": "foxnne",
+      "homepage": "https://github.com/fizzyedit/ghostty",
+      "tags": [
+        "ghostty",
+        "terminal"
+      ],
+      "date_added": "2026-07-08",
+      "latest_version": "0.1.0"
+    },
+    {
       "id": "pixi",
       "name": "Pixi",
       "description": "Pixel-art editor: sprite and atlas editing for fizzy.",

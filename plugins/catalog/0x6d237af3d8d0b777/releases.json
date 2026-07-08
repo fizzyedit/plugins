@@ -1,8 +1,40 @@
 {
   "schema": 1,
-  "generated": "2026-07-07",
+  "generated": "2026-07-08",
   "abi_fingerprint": "0x6d237af3d8d0b777",
   "releases": {
+    "ghostty": {
+      "version": "0.1.0",
+      "min_sdk_version": "0.15.0",
+      "fizzy_sdk_version": "0.15.0",
+      "published": "2026-07-08",
+      "downloads": {
+        "linux-aarch64": {
+          "url": "https://github.com/fizzyedit/ghostty/releases/download/v0.1.0/ghostty-linux-aarch64.so",
+          "sha256": "6a36f47cd61d492b1307c43bcbef5c3f36ae4440a1fba46b59d6a5fda4ffa7c9"
+        },
+        "linux-x86_64": {
+          "url": "https://github.com/fizzyedit/ghostty/releases/download/v0.1.0/ghostty-linux-x86_64.so",
+          "sha256": "d37c58e574b6fdca3e3c29b7462405dc72e1aa7b0ed5ee43516306e885208930"
+        },
+        "macos-aarch64": {
+          "url": "https://github.com/fizzyedit/ghostty/releases/download/v0.1.0/ghostty-macos-aarch64.dylib",
+          "sha256": "6f3f9ef7fc8140efc03a83d9ec84e938dfce92cb06ced45d23b896d0231b733c"
+        },
+        "macos-x86_64": {
+          "url": "https://github.com/fizzyedit/ghostty/releases/download/v0.1.0/ghostty-macos-x86_64.dylib",
+          "sha256": "8f90b0590626977b111ddcd08f6cf5598846ae713546218d1503f756eb20997e"
+        },
+        "windows-aarch64": {
+          "url": "https://github.com/fizzyedit/ghostty/releases/download/v0.1.0/ghostty-windows-aarch64.dll",
+          "sha256": "a0cedfec9ccefeea3efa9309676ea297b55b4eb01a68dab7562c89dd7e384fe8"
+        },
+        "windows-x86_64": {
+          "url": "https://github.com/fizzyedit/ghostty/releases/download/v0.1.0/ghostty-windows-x86_64.dll",
+          "sha256": "8d8948a8a4885555866e76517312d85f44a0ae69708ccb5a0820cf1eccb5b418"
+        }
+      }
+    },
     "pixi": {
       "version": "0.1.7",
       "min_sdk_version": "0.15.0",
