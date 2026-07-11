@@ -13,7 +13,7 @@
         "terminal"
       ],
       "date_added": "2026-07-08",
-      "latest_version": "0.1.0"
+      "latest_version": "0.1.1"
     },
     {
       "id": "pixi",
@@ -39,7 +39,7 @@
         "zig"
       ],
       "date_added": "2026-07-07",
-      "latest_version": "0.1.0"
+      "latest_version": "0.2.0"
     }
   ]
 }
