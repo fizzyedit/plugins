@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated": "2026-07-14",
+  "generated": "2026-07-15",
   "plugins": [
     {
       "id": "ghostty",
@@ -39,7 +39,7 @@
         "zig"
       ],
       "date_added": "2026-07-07",
-      "latest_version": "0.2.4"
+      "latest_version": "0.2.5"
     }
   ]
 }
