@@ -68,34 +68,34 @@
       }
     },
     "zig": {
-      "version": "0.2.7",
+      "version": "0.2.8",
       "min_sdk_version": "0.31.0",
       "fizzy_sdk_version": "0.31.0",
       "published": "2026-07-16",
       "downloads": {
         "linux-aarch64": {
-          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.7/zig-linux-aarch64.so",
-          "sha256": "a7aa4811b60f6c9a455f3013f6e89cc4ad917adc82d5d5d19b1dd6882efcc34e"
+          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.8/zig-linux-aarch64.so",
+          "sha256": "fd519316410b7b2fe6259b7746c7310ea37429fdb046dd8b53bcbde0b121a692"
         },
         "linux-x86_64": {
-          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.7/zig-linux-x86_64.so",
-          "sha256": "28bcacc3ceb1d3817ed42952fe3d8fc2eca48a4a6168af3081a1eb3eca83dddc"
+          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.8/zig-linux-x86_64.so",
+          "sha256": "d86e569301c620352e9b49a8d7a2fd66de4488fd17611be45bdf10f1b51a6dd2"
         },
         "macos-aarch64": {
-          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.7/zig-macos-aarch64.dylib",
-          "sha256": "f7c8a2ea7482b56b2d4ae875bc66910cd6ecf565dbd04f381db489ce0be55e36"
+          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.8/zig-macos-aarch64.dylib",
+          "sha256": "ec2a8aef0b423c86ade94d457bc6252e888591c76e51afc5c14f682fe8e8f980"
         },
         "macos-x86_64": {
-          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.7/zig-macos-x86_64.dylib",
-          "sha256": "9bec8bb75e3aa1cc9c22e94a807498f0e93922c4fcb0e09fffbb4ce79a00c489"
+          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.8/zig-macos-x86_64.dylib",
+          "sha256": "4b8942ea6e55e520c2b10f75967090e3e834e8182b2fbba577dae41bde0d1c8e"
         },
         "windows-aarch64": {
-          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.7/zig-windows-aarch64.dll",
-          "sha256": "389ee1abbe276298186097f0f3afebac36a4300371f84b300b6ff84b1993eb79"
+          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.8/zig-windows-aarch64.dll",
+          "sha256": "47c9e33766da840ef8f6ca21b81971e9f855324dc54d0adcd60e4be4479206f8"
         },
         "windows-x86_64": {
-          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.7/zig-windows-x86_64.dll",
-          "sha256": "1f90a11d6e3ff7d2b1ae5cadb3917ce841c814ebda3ca91d7d406b15b70e8625"
+          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.8/zig-windows-x86_64.dll",
+          "sha256": "6f1bb44b0184db198c988a46ebaa63831170f74fa6a493b32352b413ac98dfa8"
         }
       }
     }
