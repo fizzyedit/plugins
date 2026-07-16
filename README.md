@@ -114,7 +114,6 @@ the catalog. Update your plugin by republishing **your** `manifest.json` — no 
 | `.github/workflows/aggregate.yml` | Scheduled/triggered ingest + export + Pages deploy. |
 | `.github/workflows/validate.yml` | PR validation of registry entries. |
 | `docs/manifest.example.json` | A complete example author manifest. |
-| `scripts/aggregate.py`, `plugins/index.json` | **Deprecated** flat-file pipeline, kept until the store workflow has a few green runs. |
 
 Run the tool locally (needs Zig 0.16, Linux/macOS):
 
