@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated": "2026-07-23",
+  "generated": "2026-07-24",
   "plugins": [
     {
       "id": "ghostty",
@@ -13,7 +13,7 @@
         "terminal"
       ],
       "date_added": "2026-07-08",
-      "latest_version": "0.1.3"
+      "latest_version": "0.1.4"
     },
     {
       "id": "pixi",
@@ -26,7 +26,7 @@
         "pixel-art"
       ],
       "date_added": "2026-07-02",
-      "latest_version": "0.1.10"
+      "latest_version": "0.1.11"
     },
     {
       "id": "zig",
@@ -39,7 +39,7 @@
         "zig"
       ],
       "date_added": "2026-07-07",
-      "latest_version": "0.2.8"
+      "latest_version": "0.2.9"
     }
   ]
 }
