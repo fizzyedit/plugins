@@ -69,33 +69,33 @@
     },
     "zig": {
       "version": "0.2.11",
-      "min_sdk_version": "0.1.45",
+      "min_sdk_version": "0.1.44",
       "fizzy_sdk_version": "0.1.44",
       "published": "2026-07-28",
       "downloads": {
         "linux-aarch64": {
           "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.11/zig-linux-aarch64.so",
-          "sha256": "1bbf5acd7e05875d020e3c7826e8e14e1a6ecbb4b24cf5146c8382a34946382b"
+          "sha256": "ca9bc63bbae017e82448eef98eb2b62a7eabc154915cdd2c2a626938198133c1"
         },
         "linux-x86_64": {
           "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.11/zig-linux-x86_64.so",
-          "sha256": "b408ca11dd99903d6f6e5a52efceacfa24fdc01c6cdb84f04e8632588fd64e4f"
+          "sha256": "09b0d32b76b4a782ee96b6a8f251a2f2d3eea1ddc238d66bafba9d071eabda2d"
         },
         "macos-aarch64": {
           "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.11/zig-macos-aarch64.dylib",
-          "sha256": "59fe276e2dd717207e83eff89ae3e9e77e4f79238152b75971d6b7fd32355a85"
+          "sha256": "1bfd90cb735411dfa0d413caf185d08b2db2fa09df63c7e1ca0020770c84b919"
         },
         "macos-x86_64": {
           "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.11/zig-macos-x86_64.dylib",
-          "sha256": "3edae0b746d86313b0c01fe5c38e3296fba49a68a3248abec645821af9ef50dd"
+          "sha256": "f8aabf7f326d98feb04e91842f312845df91f559d79098abc564ce219c40746f"
         },
         "windows-aarch64": {
           "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.11/zig-windows-aarch64.dll",
-          "sha256": "8b2fb83a32792b0e6c48731b1dec0b48798186c9b39c6ec19596d966ec115c60"
+          "sha256": "98d56f8408ee3843d9c42f22d4f68b8c6a9948ecae15c1d8cc58fa783d94ad47"
         },
         "windows-x86_64": {
           "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.11/zig-windows-x86_64.dll",
-          "sha256": "e12dcd0a0d6e4e7c44f8b8d0f6d9ab6883ca5277083de042597a8f59dcbaa217"
+          "sha256": "c8e552558a5f2ea8cf3822326f827869135784e520b64aa8c1f4b1b394dd524d"
         }
       }
     }
