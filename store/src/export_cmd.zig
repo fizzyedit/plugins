@@ -76,13 +76,15 @@ const PluginRow = struct {
     name: []const u8,
     description: []const u8,
     author: []const u8,
+    author_url: []const u8,
+    publisher: []const u8,
     homepage: []const u8,
     date_added: []const u8,
 };
 
 pub fn buildSummary(arena: std.mem.Allocator, database: *db_mod.Db) !catalog.Summary {
     var stmt = try database.prepare(
-        "SELECT id, name, description, author, homepage, date_added FROM plugins ORDER BY id",
+        "SELECT id, name, description, author, author_url, publisher, homepage, date_added FROM plugins ORDER BY id",
     );
     defer stmt.deinit();
 
@@ -94,6 +96,8 @@ pub fn buildSummary(arena: std.mem.Allocator, database: *db_mod.Db) !catalog.Sum
             .name = row.name,
             .description = row.description,
             .author = row.author,
+            .author_url = row.author_url,
+            .publisher = row.publisher,
             .homepage = row.homepage,
             .tags = try loadTags(arena, database, row.id),
             .date_added = row.date_added,

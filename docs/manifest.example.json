@@ -1,5 +1,8 @@
 {
   "id": "markdown",
+  "name": "Markdown",
+  "description": "Live preview for .md files.",
+  "tags": ["viewer", "markdown"],
   "releases": [
     {
       "version": "0.0.1",

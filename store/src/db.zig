@@ -17,6 +17,8 @@ const schema_sql =
     \\  name         TEXT NOT NULL,
     \\  description  TEXT NOT NULL DEFAULT '',
     \\  author       TEXT NOT NULL DEFAULT '',
+    \\  author_url   TEXT NOT NULL DEFAULT '',
+    \\  publisher    TEXT NOT NULL DEFAULT '',
     \\  homepage     TEXT NOT NULL DEFAULT '',
     \\  manifest_url TEXT NOT NULL,
     \\  date_added   TEXT NOT NULL,
@@ -52,6 +54,14 @@ const schema_sql =
 
 fn migrate(db: *Db) !void {
     try db.execMulti(schema_sql, .{});
+    // `CREATE TABLE IF NOT EXISTS` does nothing to an *existing* table, so a column added after
+    // the first release needs an explicit ALTER — `registry.db` is committed and carries real
+    // history, so it will not be recreated from `schema_sql`. SQLite has no
+    // "ADD COLUMN IF NOT EXISTS" and re-adding raises a generic error, so the failure is
+    // swallowed: on an already-migrated database that error *is* the success case. A genuinely
+    // broken schema still surfaces immediately, on the next real query against the column.
+    db.exec("ALTER TABLE plugins ADD COLUMN publisher TEXT NOT NULL DEFAULT ''", .{}, .{}) catch {};
+    db.exec("ALTER TABLE plugins ADD COLUMN author_url TEXT NOT NULL DEFAULT ''", .{}, .{}) catch {};
     _ = try db.pragma(void, .{}, "foreign_keys", "1");
 }
 

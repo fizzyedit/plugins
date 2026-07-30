@@ -70,8 +70,8 @@ pub fn run(allocator: std.mem.Allocator, io: std.Io, args: []const []const u8) !
         const entry = loaded.value();
         switch (outcome) {
             .ok => |parsed| {
-                try upsertPlugin(&database, entry, today);
-                try upsertTags(&database, entry);
+                try upsertPlugin(&database, entry, parsed.value, today);
+                try upsertTags(&database, entry, parsed.value);
                 try upsertReleases(&database, entry.id, parsed.value.releases);
                 std.debug.print("  ok    {s}: {d} release(s)\n", .{ entry.id, parsed.value.releases.len });
                 ok_count += 1;
@@ -92,14 +92,30 @@ pub fn run(allocator: std.mem.Allocator, io: std.Io, args: []const []const u8) !
     std.debug.print("ingest done: {d} ok, {d} warn (kept last-known-good), {d} skip\n", .{ ok_count, warn_count, skip_count });
 }
 
-fn upsertPlugin(database: *db_mod.Db, entry: registry_entry.RegistryEntry, today: []const u8) !void {
+/// `registry/<id>.json`'s own `description` wins when set (it's reviewed via PR and can be
+/// edited without a plugin release); otherwise fall back to whatever the author's own
+/// `manifest.json` reports (sourced from their `plugin.zig.zon`, see `manifest.zig`'s doc
+/// comment) — this is what lets an author skip hand-duplicating it into their one registry PR.
+/// `author` follows the same precedence, but `publisher` deliberately follows none of it: see
+/// `publisherFromUrl`.
+fn upsertPlugin(
+    database: *db_mod.Db,
+    entry: registry_entry.RegistryEntry,
+    manifest: manifest_mod.Manifest,
+    today: []const u8,
+) !void {
+    const description = if (entry.description.len > 0) entry.description else manifest.description;
+    const author = if (entry.author.len > 0) entry.author else manifest.author;
+    const publisher = publisherFromUrl(entry.manifest_url) orelse "";
     try database.exec(
-        \\INSERT INTO plugins (id, name, description, author, homepage, manifest_url, date_added, last_ok_at, last_error)
-        \\VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL)
+        \\INSERT INTO plugins (id, name, description, author, author_url, publisher, homepage, manifest_url, date_added, last_ok_at, last_error)
+        \\VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)
         \\ON CONFLICT(id) DO UPDATE SET
         \\  name = excluded.name,
         \\  description = excluded.description,
         \\  author = excluded.author,
+        \\  author_url = excluded.author_url,
+        \\  publisher = excluded.publisher,
         \\  homepage = excluded.homepage,
         \\  manifest_url = excluded.manifest_url,
         \\  last_ok_at = excluded.last_ok_at,
@@ -107,15 +123,68 @@ fn upsertPlugin(database: *db_mod.Db, entry: registry_entry.RegistryEntry, today
     ,
         .{},
         .{
-            entry.id,          entry.name,     entry.description, entry.author,
-            entry.homepage,    entry.manifest_url, today,          today,
+            entry.id,           entry.name, description, author, manifest.author_url,
+            publisher,          entry.homepage,          entry.manifest_url,
+            today,              today,
         },
     );
 }
 
-fn upsertTags(database: *db_mod.Db, entry: registry_entry.RegistryEntry) !void {
+/// The account a plugin's binaries are actually published from, parsed out of its
+/// `manifest_url` — e.g. `https://github.com/fizzyedit/pixi/releases/latest/download/manifest.json`
+/// → `fizzyedit`.
+///
+/// This is the *attestable* half of the store's attribution, and the reason it is derived here
+/// rather than read from a field: `manifest_url` is where the downloaded binary actually comes
+/// from, and it's fixed in a PR-reviewed `registry/<id>.json`, so it can't be restated by a
+/// plugin describing itself. A self-asserted `author` string sits beside it in the UI, clearly
+/// as the softer claim.
+///
+/// Null for any host we can't attribute this way (a self-hosted manifest on an arbitrary
+/// domain) — the store then shows the author credit alone rather than inventing a publisher.
+fn publisherFromUrl(manifest_url: []const u8) ?[]const u8 {
+    const schemes = [_][]const u8{ "https://", "http://" };
+    var rest: []const u8 = manifest_url;
+    for (schemes) |s| {
+        if (std.ascii.startsWithIgnoreCase(manifest_url, s)) {
+            rest = manifest_url[s.len..];
+            break;
+        }
+    } else return null;
+
+    const slash = std.mem.indexOfScalar(u8, rest, '/') orelse return null;
+    const host = rest[0..slash];
+    if (!std.ascii.eqlIgnoreCase(host, "github.com")) return null;
+
+    const path = rest[slash + 1 ..];
+    const owner_end = std.mem.indexOfScalar(u8, path, '/') orelse path.len;
+    const owner = path[0..owner_end];
+    return if (owner.len > 0) owner else null;
+}
+
+test "publisherFromUrl extracts the GitHub owner" {
+    try std.testing.expectEqualStrings("fizzyedit", publisherFromUrl(
+        "https://github.com/fizzyedit/pixi/releases/latest/download/manifest.json",
+    ).?);
+    try std.testing.expectEqualStrings("foxnne", publisherFromUrl("http://github.com/foxnne/x").?);
+}
+
+test "publisherFromUrl declines what it cannot attribute" {
+    // Self-hosted manifest: a real publisher, but not one this heuristic can name.
+    try std.testing.expectEqual(@as(?[]const u8, null), publisherFromUrl("https://plugins.example.test/m.json"));
+    // Not a URL at all, and a scheme we never open.
+    try std.testing.expectEqual(@as(?[]const u8, null), publisherFromUrl("github.com/foxnne/x"));
+    try std.testing.expectEqual(@as(?[]const u8, null), publisherFromUrl("file:///etc/passwd"));
+    // Host present but no owner segment.
+    try std.testing.expectEqual(@as(?[]const u8, null), publisherFromUrl("https://github.com/"));
+}
+
+/// Same registry-wins/manifest-falls-back relationship as `upsertPlugin`'s `description` — see
+/// its doc comment.
+fn upsertTags(database: *db_mod.Db, entry: registry_entry.RegistryEntry, manifest: manifest_mod.Manifest) !void {
+    const tags = if (entry.tags.len > 0) entry.tags else manifest.tags;
     try database.exec("DELETE FROM plugin_tags WHERE plugin_id = ?", .{}, .{entry.id});
-    for (entry.tags) |tag| {
+    for (tags) |tag| {
         try database.exec(
             "INSERT OR IGNORE INTO plugin_tags (plugin_id, tag) VALUES (?, ?)",
             .{},

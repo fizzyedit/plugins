@@ -22,6 +22,19 @@ pub const Release = struct {
 
 pub const Manifest = struct {
     id: []const u8 = "",
+    /// `name`/`description`/`tags` are optional, straight off the author's `plugin.zig.zon`
+    /// (via `plugin-build-action`'s `assemble_manifest.py`). `ingest.zig` uses these as the
+    /// fallback when the corresponding `registry/<id>.json` field is left blank, so an author
+    /// never has to hand-duplicate them into their one registry PR. A registry entry's own value
+    /// still wins when set — see `ingest.zig`'s `upsertPlugin`/`upsertTags`.
+    name: []const u8 = "",
+    description: []const u8 = "",
+    tags: []const []const u8 = &.{},
+    /// Cosmetic, self-asserted author credit + an optional link for it. Distinct from the
+    /// `publisher` the ingest derives from `manifest_url` — see `ingest.publisherFromUrl`.
+    /// `author_url` has no `registry/<id>.json` counterpart: it only ever comes from here.
+    author: []const u8 = "",
+    author_url: []const u8 = "",
     releases: []const Release = &.{},
 };
 
@@ -65,6 +78,29 @@ pub fn parseAndValidate(
     }
 
     return parsed;
+}
+
+test "parseAndValidate reads optional name/description/tags" {
+    const json =
+        \\{"id":"pixi","name":"Pixi","description":"Pixel-art editor.","tags":["editor","pixel-art"],
+        \\"releases":[]}
+    ;
+    var parsed = try parseAndValidate(std.testing.allocator, json, "pixi");
+    defer parsed.deinit();
+    try std.testing.expectEqualStrings("Pixi", parsed.value.name);
+    try std.testing.expectEqualStrings("Pixel-art editor.", parsed.value.description);
+    try std.testing.expectEqual(@as(usize, 2), parsed.value.tags.len);
+    try std.testing.expectEqualStrings("editor", parsed.value.tags[0]);
+}
+
+test "parseAndValidate defaults name/description/tags when absent" {
+    const json = \\{"id":"pixi","releases":[]}
+    ;
+    var parsed = try parseAndValidate(std.testing.allocator, json, "pixi");
+    defer parsed.deinit();
+    try std.testing.expectEqualStrings("", parsed.value.name);
+    try std.testing.expectEqualStrings("", parsed.value.description);
+    try std.testing.expectEqual(@as(usize, 0), parsed.value.tags.len);
 }
 
 test "parseAndValidate accepts a well-formed manifest" {

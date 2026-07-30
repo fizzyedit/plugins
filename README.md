@@ -93,6 +93,12 @@ construction holds at most one release per plugin, never the full version histor
 
    - Required: `id` (must equal the filename stem and your `manifest.id`), `name`,
      `manifest_url`. Optional: `description`, `author`, `homepage`, `tags`.
+   - You don't have to fill in `description`/`tags` here at all: if your own
+     `manifest.json` reports them (which `plugin-build-action` v4+ does automatically, reading
+     them off your `plugin.zig.zon`), ingest falls back to that whenever this file leaves them
+     blank. Set them here only when you want the store-listed copy to differ from your build
+     without cutting a release — an explicit value here always wins. `author` has no such
+     fallback (it isn't a `plugin.zig.zon` concept), so fill it in here if you want it shown.
    - Plugin **ids are globally unique** — the filename convention and the database's
      primary key both enforce it, so pick a non-conflicting id.
    - The PR runs [`validate.yml`](.github/workflows/validate.yml), which checks the entry

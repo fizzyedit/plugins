@@ -10,7 +10,13 @@ pub const SummaryEntry = struct {
     id: []const u8,
     name: []const u8,
     description: []const u8 = "",
+    /// Self-asserted display credit (registry entry's own, else the author's `manifest.json`).
     author: []const u8 = "",
+    /// Optional link for `author`, from the author's `manifest.json` only.
+    author_url: []const u8 = "",
+    /// Derived at ingest from `manifest_url`'s owner — the attestable counterpart to `author`.
+    /// See `ingest.publisherFromUrl`.
+    publisher: []const u8 = "",
     homepage: []const u8 = "",
     tags: []const []const u8 = &.{},
     date_added: []const u8,
