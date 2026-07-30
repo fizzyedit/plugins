@@ -6,7 +6,9 @@
       "id": "ghostty",
       "name": "Ghostty",
       "description": "Ghostty terminal emulator plugin for fizzy",
-      "author": "foxnne",
+      "author": "",
+      "author_url": "",
+      "publisher": "fizzyedit",
       "homepage": "https://github.com/fizzyedit/ghostty",
       "tags": [
         "ghostty",
@@ -19,7 +21,9 @@
       "id": "pixi",
       "name": "Pixi",
       "description": "Pixel-art editor: sprite and atlas editing for fizzy.",
-      "author": "foxnne",
+      "author": "",
+      "author_url": "",
+      "publisher": "fizzyedit",
       "homepage": "https://github.com/fizzyedit/pixi",
       "tags": [
         "editor",
@@ -32,7 +36,9 @@
       "id": "zig",
       "name": "Zig",
       "description": "Zig language support for fizzy",
-      "author": "foxnne",
+      "author": "",
+      "author_url": "",
+      "publisher": "fizzyedit",
       "homepage": "https://github.com/fizzyedit/zig",
       "tags": [
         "language",
