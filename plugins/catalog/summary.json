@@ -1,7 +1,23 @@
 {
   "schema": 1,
-  "generated": "2026-08-13",
+  "generated": "2026-08-18",
   "plugins": [
+    {
+      "id": "atlas",
+      "name": "Atlas",
+      "description": "Wiki-style notes for fizzy: [[wikilinks]], backlinks, and a graph of how your markdown connects.",
+      "author": "foxnne",
+      "author_url": "https://github.com/foxnne",
+      "publisher": "fizzyedit",
+      "homepage": "https://github.com/fizzyedit/atlas",
+      "tags": [
+        "markdown",
+        "notes",
+        "wiki"
+      ],
+      "date_added": "2026-08-18",
+      "latest_version": "0.0.1"
+    },
     {
       "id": "ghostty",
       "name": "Ghostty",
@@ -15,7 +31,7 @@
         "terminal"
       ],
       "date_added": "2026-07-08",
-      "latest_version": "0.1.11"
+      "latest_version": "0.1.12"
     },
     {
       "id": "pixi",
@@ -30,7 +46,7 @@
         "pixel-art"
       ],
       "date_added": "2026-07-02",
-      "latest_version": "0.1.18"
+      "latest_version": "0.1.19"
     },
     {
       "id": "zig",
@@ -45,7 +61,7 @@
         "zig"
       ],
       "date_added": "2026-07-07",
-      "latest_version": "0.2.15"
+      "latest_version": "0.2.16"
     }
   ]
 }
