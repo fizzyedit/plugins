@@ -1,0 +1,13 @@
+{
+  "id": "atlas",
+  "name": "Atlas",
+  "description": "Wiki-style notes for fizzy: [[wikilinks]], backlinks, and a graph of how your markdown connects.",
+  "author": "foxnne",
+  "homepage": "https://github.com/fizzyedit/atlas",
+  "tags": [
+    "notes",
+    "markdown",
+    "wiki"
+  ],
+  "manifest_url": "https://github.com/fizzyedit/atlas/releases/latest/download/manifest.json"
+}
