@@ -1,37 +1,37 @@
 {
   "schema": 1,
-  "generated": "2026-08-18",
+  "generated": "2026-08-20",
   "abi_fingerprint": "0x90190f5b241b12ed",
   "releases": {
     "atlas": {
-      "version": "0.0.1",
+      "version": "0.0.2",
       "min_sdk_version": "0.1.49",
       "fizzy_sdk_version": "0.1.49",
-      "published": "2026-08-18",
+      "published": "2026-08-20",
       "downloads": {
         "linux-aarch64": {
-          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.1/atlas-linux-aarch64.so",
-          "sha256": "387b0cb433691a9cc4eafe7d8ef60c8395b97b52d020d4b2bc052d5f58f36b27"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.2/atlas-linux-aarch64.so",
+          "sha256": "938888a0bb84627061c44828df99dd88159358e87534f10eff932175f30096d7"
         },
         "linux-x86_64": {
-          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.1/atlas-linux-x86_64.so",
-          "sha256": "bd68b9ab2ac0ca7fd8b180d18dd6482d54c5e4ffe4598b4e8dc633e25e0e09cb"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.2/atlas-linux-x86_64.so",
+          "sha256": "d0c49dbacd3e1fc80c5be97f761bf5e72eae8ca86f3bbd280a1f26da79721f52"
         },
         "macos-aarch64": {
-          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.1/atlas-macos-aarch64.dylib",
-          "sha256": "75fd39bace370acc1997814c1bc4ef7667353bc5c02f6967a1ddba63764f4a31"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.2/atlas-macos-aarch64.dylib",
+          "sha256": "9a424fc4ebeb1f553175c67c9307b2d303127185320a24e4b11ac060cd622fdc"
         },
         "macos-x86_64": {
-          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.1/atlas-macos-x86_64.dylib",
-          "sha256": "32999a99f4a6bbe4edb9beecb036c2ff6572a238db450b04d6f4d5f8cea796b9"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.2/atlas-macos-x86_64.dylib",
+          "sha256": "0fa3096a7d6d3e3fec5cc1e02d0cdc82878ef0490b59fddec72c784780db6ae9"
         },
         "windows-aarch64": {
-          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.1/atlas-windows-aarch64.dll",
-          "sha256": "98a8b2fa136e6b5c621041f030600cf9856339ec9ed04d8055c2b670ba13972c"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.2/atlas-windows-aarch64.dll",
+          "sha256": "6f337098022c3f1cf2eed82944735250627bb6b8cd33cfb14d8a63cceb9c38e1"
         },
         "windows-x86_64": {
-          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.1/atlas-windows-x86_64.dll",
-          "sha256": "46077fb24994a26e58f3a71ee6b1b15a555f151a2c02ff434d2f65d81f0ad1be"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.2/atlas-windows-x86_64.dll",
+          "sha256": "6fe742c44025acb35a877d18d2836471856edb1d22061803f44430236bea3b61"
         }
       }
     },
