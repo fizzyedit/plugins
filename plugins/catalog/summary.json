@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated": "2026-09-03",
+  "generated": "2026-09-04",
   "plugins": [
     {
       "id": "atlas",
@@ -16,7 +16,7 @@
         "wiki"
       ],
       "date_added": "2026-08-18",
-      "latest_version": "0.0.5"
+      "latest_version": "0.0.6"
     },
     {
       "id": "ghostty",
@@ -31,7 +31,7 @@
         "terminal"
       ],
       "date_added": "2026-07-08",
-      "latest_version": "0.1.14"
+      "latest_version": "0.1.15"
     },
     {
       "id": "pixi",
@@ -46,7 +46,7 @@
         "pixel-art"
       ],
       "date_added": "2026-07-02",
-      "latest_version": "0.1.21"
+      "latest_version": "0.1.22"
     },
     {
       "id": "zig",
@@ -61,7 +61,7 @@
         "zig"
       ],
       "date_added": "2026-07-07",
-      "latest_version": "0.2.18"
+      "latest_version": "0.2.19"
     }
   ]
 }
