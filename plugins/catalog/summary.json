@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated": "2026-09-04",
+  "generated": "2026-09-22",
   "plugins": [
     {
       "id": "atlas",
@@ -17,6 +17,22 @@
       ],
       "date_added": "2026-08-18",
       "latest_version": "0.0.6"
+    },
+    {
+      "id": "drive",
+      "name": "Google Drive",
+      "description": "Sign in to Google Drive and browse, open and edit it in the explorer like a folder — on the web too.",
+      "author": "foxnne",
+      "author_url": "https://github.com/foxnne",
+      "publisher": "fizzyedit",
+      "homepage": "https://github.com/fizzyedit/drive",
+      "tags": [
+        "cloud",
+        "drive",
+        "mount"
+      ],
+      "date_added": "2026-09-22",
+      "latest_version": "0.0.1"
     },
     {
       "id": "ghostty",
