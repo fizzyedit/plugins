@@ -1,0 +1,13 @@
+{
+  "id": "drive",
+  "name": "Google Drive",
+  "description": "Sign in to Google Drive and browse, open and edit it in the explorer like a folder — on the web too.",
+  "author": "foxnne",
+  "homepage": "https://github.com/fizzyedit/drive",
+  "tags": [
+    "cloud",
+    "drive",
+    "mount"
+  ],
+  "manifest_url": "https://github.com/fizzyedit/drive/releases/latest/download/manifest.json"
+}
