@@ -40,38 +40,38 @@
       }
     },
     "drive": {
-      "version": "0.0.7",
+      "version": "0.1.0",
       "min_sdk_version": "0.2.0",
       "fizzy_sdk_version": "0.2.0",
       "published": "2026-09-23",
       "downloads": {
         "linux-aarch64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.7/drive-linux-aarch64.so",
-          "sha256": "3f899377ab206c7404eb8d97f6f2f17e7f15d5fb5ed51eabb27dc98070b7be19"
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.0/drive-linux-aarch64.so",
+          "sha256": "a6583dc2c94de0f1f8c2c463785a8768a1fc027286c51ce375ff13ce1811691a"
         },
         "linux-x86_64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.7/drive-linux-x86_64.so",
-          "sha256": "efb10670b4267a45beef5068044e829f5ea70b61e84f862498591b9f4d69e69e"
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.0/drive-linux-x86_64.so",
+          "sha256": "3051e6a0a7c2f4dd067478d7b63c43cfac93bd7cfaf2112ff021a366b05edfe3"
         },
         "macos-aarch64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.7/drive-macos-aarch64.dylib",
-          "sha256": "172452e16be50b9b7328f6106f9de07f7520a0580e39cd9c0383e79ea773e238"
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.0/drive-macos-aarch64.dylib",
+          "sha256": "e5366f294ece84d13837b078cb176f14cee08f569c3361792ea17214833ce92a"
         },
         "macos-x86_64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.7/drive-macos-x86_64.dylib",
-          "sha256": "d4c1467325a9e2bc52af654a416385b7e02c83c1d7cfd02264c247c1d67cde8b"
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.0/drive-macos-x86_64.dylib",
+          "sha256": "c431064e83ebb0d865bd0b7d45c4adb9f0d97baa649cff20a099a8a16a5e6ded"
         },
         "web-wasm32": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.7/drive-web-wasm32.wasm",
-          "sha256": "9a4ac0723769401dce40d9041afb49056041685b73a0884adfbe0193f2936d32"
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.0/drive-web-wasm32.wasm",
+          "sha256": "eba117d043305506d9e7c6f8c89468d81f3b80a2d23d0abd07198c7b1501cf53"
         },
         "windows-aarch64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.7/drive-windows-aarch64.dll",
-          "sha256": "3d086d0185358a1a5c023af44233b9036c4c68917a86fd9e88cd923c6567c831"
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.0/drive-windows-aarch64.dll",
+          "sha256": "b09422bd3740a706a9bd612d30537a12deb9d0bcfdc8e7ed2a580b04a6aab86f"
         },
         "windows-x86_64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.7/drive-windows-x86_64.dll",
-          "sha256": "51ee16ae3b512a473cf10156cfe8535f98acf5b990a64c3b88484e5c36682c23"
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.0/drive-windows-x86_64.dll",
+          "sha256": "d6c7e181647eaa3fc6f71a66d3bbccec4c1cad5560abdf58edac381ce6083f51"
         }
       }
     }
