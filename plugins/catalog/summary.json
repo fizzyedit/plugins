@@ -16,7 +16,7 @@
         "wiki"
       ],
       "date_added": "2026-08-18",
-      "latest_version": "0.0.7"
+      "latest_version": "0.0.8"
     },
     {
       "id": "drive",
@@ -32,7 +32,7 @@
         "mount"
       ],
       "date_added": "2026-09-22",
-      "latest_version": "0.1.0"
+      "latest_version": "0.1.1"
     },
     {
       "id": "ghostty",
@@ -47,7 +47,7 @@
         "terminal"
       ],
       "date_added": "2026-07-08",
-      "latest_version": "0.1.15"
+      "latest_version": "0.1.16"
     },
     {
       "id": "pixi",
@@ -62,7 +62,7 @@
         "pixel-art"
       ],
       "date_added": "2026-07-02",
-      "latest_version": "0.1.22"
+      "latest_version": "0.1.23"
     },
     {
       "id": "zig",
@@ -77,7 +77,7 @@
         "zig"
       ],
       "date_added": "2026-07-07",
-      "latest_version": "0.2.19"
+      "latest_version": "0.2.20"
     }
   ]
 }
