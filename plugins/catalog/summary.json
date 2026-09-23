@@ -16,7 +16,7 @@
         "wiki"
       ],
       "date_added": "2026-08-18",
-      "latest_version": "0.0.8"
+      "latest_version": "0.0.9"
     },
     {
       "id": "drive",
@@ -32,7 +32,7 @@
         "mount"
       ],
       "date_added": "2026-09-22",
-      "latest_version": "0.1.1"
+      "latest_version": "0.1.2"
     },
     {
       "id": "ghostty",

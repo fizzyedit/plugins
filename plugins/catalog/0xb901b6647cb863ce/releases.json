@@ -4,74 +4,74 @@
   "abi_fingerprint": "0xb901b6647cb863ce",
   "releases": {
     "atlas": {
-      "version": "0.0.8",
+      "version": "0.0.9",
       "min_sdk_version": "0.2.1",
       "fizzy_sdk_version": "0.2.1",
       "published": "2026-09-23",
       "downloads": {
         "linux-aarch64": {
-          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.8/atlas-linux-aarch64.so",
-          "sha256": "64a97190be62001cb58ee1aa44034931d539b92d965b81e384fb5723a7acc5cb"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.9/atlas-linux-aarch64.so",
+          "sha256": "8d9eac2361eac147245dfb416620266c25327d1a38f537ff9819157c28015f09"
         },
         "linux-x86_64": {
-          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.8/atlas-linux-x86_64.so",
-          "sha256": "10e49f1438ebef18a18bb250e2a3ee9c73a1b9645bc0fcf905b09a7001b78c5b"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.9/atlas-linux-x86_64.so",
+          "sha256": "861c17423fa79263e21be64e311af62624c4026f73fcae55d990daa2000c5601"
         },
         "macos-aarch64": {
-          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.8/atlas-macos-aarch64.dylib",
-          "sha256": "23c7f238b9ccb49d998e1b4c95a9a8b44191e552c82608ba10728ba7edd4e1cd"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.9/atlas-macos-aarch64.dylib",
+          "sha256": "ed36afa5f38526e9704a7bf9a724919efd8c33cde193f9ec780ca61675e6a6bc"
         },
         "macos-x86_64": {
-          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.8/atlas-macos-x86_64.dylib",
-          "sha256": "bad328282b27e7d304dc7a3a226f6622fb91cc9de60ed7fc6a4c4b839bf5da52"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.9/atlas-macos-x86_64.dylib",
+          "sha256": "71ef9735074e171b8e1f7fd77061b96e86e265ee8a2379974373c6d8d5f4c305"
         },
         "web-wasm32": {
-          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.8/atlas-web-wasm32.wasm",
-          "sha256": "4302270b8f9eb2ed5b459d2a2c822fdd7a057e65febe9230f1eabcc078d40804"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.9/atlas-web-wasm32.wasm",
+          "sha256": "e61a817249cb5e1643eb5d9c0e33507a3e10780a2734c7ff8f55399bf885c024"
         },
         "windows-aarch64": {
-          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.8/atlas-windows-aarch64.dll",
-          "sha256": "8c4b1bba3e0f353011c94f5052daf01016c7b094a5c287ff4ee8533653b05fdc"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.9/atlas-windows-aarch64.dll",
+          "sha256": "63858716d5c126a66f1db7722d3dd1fa510e8890db4e96f79f844fce0f47fc5e"
         },
         "windows-x86_64": {
-          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.8/atlas-windows-x86_64.dll",
-          "sha256": "6bd3feeb5bde710eb3d5897756f4fea377c68c51a4aed4fe57079c5c089356cf"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.9/atlas-windows-x86_64.dll",
+          "sha256": "8af3c8c49fcfa07a012dca214eabed7fb7909a6404f290efe7ff4126e041ce90"
         }
       }
     },
     "drive": {
-      "version": "0.1.1",
+      "version": "0.1.2",
       "min_sdk_version": "0.2.1",
       "fizzy_sdk_version": "0.2.1",
       "published": "2026-09-23",
       "downloads": {
         "linux-aarch64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.1/drive-linux-aarch64.so",
-          "sha256": "f3f7541ada23bfc7550eafa87b92d395ac369f160bedbbdf6ca326e202f26222"
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.2/drive-linux-aarch64.so",
+          "sha256": "65d044a857a8bbb1f01e4455c3c665fe769c121b91ba9d8f332cd4e260f6a409"
         },
         "linux-x86_64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.1/drive-linux-x86_64.so",
-          "sha256": "13c69986f891b4dd908856d48a710f375a6e204c07a20cfc955ec02ff598f653"
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.2/drive-linux-x86_64.so",
+          "sha256": "3c3e5e5a2ca947c0f71356b05b915fb1c7d24b9484a4dd87006c68374897eb32"
         },
         "macos-aarch64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.1/drive-macos-aarch64.dylib",
-          "sha256": "a234a4d10213763731581b7bd1bd2c028b14298ead124baf6fe2ab16e3372d4a"
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.2/drive-macos-aarch64.dylib",
+          "sha256": "c5584d19699bd7a045d74fb4607a2c371c1679958ce73235906456d6111e8dcc"
         },
         "macos-x86_64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.1/drive-macos-x86_64.dylib",
-          "sha256": "63af81ab0b5de714bec5820c02a55555f374076dd7c3666aecd4ad6ff389f719"
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.2/drive-macos-x86_64.dylib",
+          "sha256": "1e9917c645fdac80aa8667330be8aeee1b65df2cd0627f9198d4a550be8e98fe"
         },
         "web-wasm32": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.1/drive-web-wasm32.wasm",
-          "sha256": "2b74136109354326dfb5790340fbb7d84ade386eabe8c3bf2cc62c8482e410fb"
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.2/drive-web-wasm32.wasm",
+          "sha256": "1c000e741fbabae3e3a905dc43e9ecf6e88b241a820151753b21a42f34a7ee3a"
         },
         "windows-aarch64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.1/drive-windows-aarch64.dll",
-          "sha256": "56c5fb18da80810c19cda2b48253eded06c514954b9fdbb82d2fea6551a8c9c2"
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.2/drive-windows-aarch64.dll",
+          "sha256": "8e699c55c5161ef449b08ea4507f3455d2803e8f3c1fa35283d539552be897d3"
         },
         "windows-x86_64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.1/drive-windows-x86_64.dll",
-          "sha256": "f6fe52ddd8913748d5c5af9581512cf814af48f52b5b0ae522fa1e5cdbd0c215"
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.2/drive-windows-x86_64.dll",
+          "sha256": "5e3b7c1f5e38c5fde3f8191d1189e8515bc8550488733ed15fc55c17847f0a30"
         }
       }
     },
