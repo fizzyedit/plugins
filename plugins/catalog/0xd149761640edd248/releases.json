@@ -1,41 +1,77 @@
 {
   "schema": 1,
-  "generated": "2026-09-22",
+  "generated": "2026-09-23",
   "abi_fingerprint": "0xd149761640edd248",
   "releases": {
-    "drive": {
-      "version": "0.0.4",
+    "atlas": {
+      "version": "0.0.7",
       "min_sdk_version": "0.2.0",
       "fizzy_sdk_version": "0.2.0",
-      "published": "2026-09-22",
+      "published": "2026-09-23",
       "downloads": {
         "linux-aarch64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.4/drive-linux-aarch64.so",
-          "sha256": "1cf349b9c8e23bfb5de24ba7c550d7d77832e73518d6a8d336a9f0271c9e3814"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.7/atlas-linux-aarch64.so",
+          "sha256": "d8d052506eb2f45168933b480b645d1898c8d48c542bd1a487c7efde0d4214fb"
         },
         "linux-x86_64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.4/drive-linux-x86_64.so",
-          "sha256": "2f97ae363413022c3629870284f544426544b2f7de9b25a15c63484c91f428d9"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.7/atlas-linux-x86_64.so",
+          "sha256": "c20ad2c0c6379c1073f563d5f6452f3c5a1cbf9fdd98750a4cedce62f88813f7"
         },
         "macos-aarch64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.4/drive-macos-aarch64.dylib",
-          "sha256": "15a9375fd4de6648a669280d66f8f2989292c6b025d02f90fbcf3585775ecbb2"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.7/atlas-macos-aarch64.dylib",
+          "sha256": "82cafce133adb8506fc760bab68058e3fff9f9627c6d007532977a62f3b4e42e"
         },
         "macos-x86_64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.4/drive-macos-x86_64.dylib",
-          "sha256": "ef52d7ac663a6c7b2475a6481cb0cc6d28caa4ab60b94ae5529a3e3fa5e423b2"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.7/atlas-macos-x86_64.dylib",
+          "sha256": "5da61b9e1206ebeff88035d82d0a30e2738f73d0234e783c4a7e93a1bef3e4b5"
         },
         "web-wasm32": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.4/drive-web-wasm32.wasm",
-          "sha256": "652908238c404d1d3d3c0e803e3e221b3fd0ac459e7b4f032c88927b55a4613c"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.7/atlas-web-wasm32.wasm",
+          "sha256": "366a2da6ec014d4212f351ff93defa30c59d5e444b5841411b620b478136416f"
         },
         "windows-aarch64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.4/drive-windows-aarch64.dll",
-          "sha256": "03b06ea410607a5fb11af24b508478c7fe8e7536ac86e89420694dca7198e304"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.7/atlas-windows-aarch64.dll",
+          "sha256": "6db9510937f3318a539c519842024a74a4b86a19f5857c8ad8ea9da59a5b3040"
         },
         "windows-x86_64": {
-          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.4/drive-windows-x86_64.dll",
-          "sha256": "0c8ed81f1cc95e46bb9bc7b89ddbf96f79b682766ff0fa50231af14fe136ca0b"
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.7/atlas-windows-x86_64.dll",
+          "sha256": "cb521e297a23675ee86e00201a1ffb568be97e1a5a8630afa76d5e9a1d552c19"
+        }
+      }
+    },
+    "drive": {
+      "version": "0.0.7",
+      "min_sdk_version": "0.2.0",
+      "fizzy_sdk_version": "0.2.0",
+      "published": "2026-09-23",
+      "downloads": {
+        "linux-aarch64": {
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.7/drive-linux-aarch64.so",
+          "sha256": "3f899377ab206c7404eb8d97f6f2f17e7f15d5fb5ed51eabb27dc98070b7be19"
+        },
+        "linux-x86_64": {
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.7/drive-linux-x86_64.so",
+          "sha256": "efb10670b4267a45beef5068044e829f5ea70b61e84f862498591b9f4d69e69e"
+        },
+        "macos-aarch64": {
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.7/drive-macos-aarch64.dylib",
+          "sha256": "172452e16be50b9b7328f6106f9de07f7520a0580e39cd9c0383e79ea773e238"
+        },
+        "macos-x86_64": {
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.7/drive-macos-x86_64.dylib",
+          "sha256": "d4c1467325a9e2bc52af654a416385b7e02c83c1d7cfd02264c247c1d67cde8b"
+        },
+        "web-wasm32": {
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.7/drive-web-wasm32.wasm",
+          "sha256": "9a4ac0723769401dce40d9041afb49056041685b73a0884adfbe0193f2936d32"
+        },
+        "windows-aarch64": {
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.7/drive-windows-aarch64.dll",
+          "sha256": "3d086d0185358a1a5c023af44233b9036c4c68917a86fd9e88cd923c6567c831"
+        },
+        "windows-x86_64": {
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.0.7/drive-windows-x86_64.dll",
+          "sha256": "51ee16ae3b512a473cf10156cfe8535f98acf5b990a64c3b88484e5c36682c23"
         }
       }
     }

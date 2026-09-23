@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated": "2026-09-22",
+  "generated": "2026-09-23",
   "plugins": [
     {
       "id": "atlas",
@@ -16,7 +16,7 @@
         "wiki"
       ],
       "date_added": "2026-08-18",
-      "latest_version": "0.0.6"
+      "latest_version": "0.0.7"
     },
     {
       "id": "drive",
@@ -32,7 +32,7 @@
         "mount"
       ],
       "date_added": "2026-09-22",
-      "latest_version": "0.0.4"
+      "latest_version": "0.0.7"
     },
     {
       "id": "ghostty",
