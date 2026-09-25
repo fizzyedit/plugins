@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated": "2026-09-24",
+  "generated": "2026-09-25",
   "abi_fingerprint": "0xb901b6647cb863ce",
   "releases": {
     "atlas": {
@@ -108,38 +108,38 @@
       }
     },
     "pixi": {
-      "version": "0.1.31",
-      "min_sdk_version": "0.2.7",
-      "fizzy_sdk_version": "0.2.7",
-      "published": "2026-09-24",
+      "version": "0.1.32",
+      "min_sdk_version": "0.2.9",
+      "fizzy_sdk_version": "0.2.9",
+      "published": "2026-09-25",
       "downloads": {
         "linux-aarch64": {
-          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.31/pixi-linux-aarch64.so",
-          "sha256": "838ae8f0c731c81381e0d46ac432c4747b392c5c251e98db585724f2f44f4757"
+          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.32/pixi-linux-aarch64.so",
+          "sha256": "166ceabdae5f7dc52454bdd281ed2eb22e9a1856f723c65d455a2965c57f0bf2"
         },
         "linux-x86_64": {
-          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.31/pixi-linux-x86_64.so",
-          "sha256": "880c9f02e21bbcf654f08c7bcac15a4ff256e156c808c26074ae7726566e721e"
+          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.32/pixi-linux-x86_64.so",
+          "sha256": "e55e089f7eb56bce747faf456d9df07ff015a4301cbf14fc410274438197e636"
         },
         "macos-aarch64": {
-          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.31/pixi-macos-aarch64.dylib",
-          "sha256": "7d6a7d991b249f1bf2ed3ccbc17fffb0a7e8ad39b4a95a7659a564e7d69a3907"
+          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.32/pixi-macos-aarch64.dylib",
+          "sha256": "701c617a7181e2031deb1f8d7c24207773b522b713e63a3e9fa566f1f26e05ea"
         },
         "macos-x86_64": {
-          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.31/pixi-macos-x86_64.dylib",
-          "sha256": "d4ae751cbe6fcb2e4f74e62d8d02f6a2b4f6d4d61b501bbc343d16094224afdd"
+          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.32/pixi-macos-x86_64.dylib",
+          "sha256": "4fc94b951ff5f1a03f88aeff02d47d90e0d95a294c5e4da84b0b5b13fde0fcdf"
         },
         "web-wasm32": {
-          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.31/pixi-web-wasm32.wasm",
-          "sha256": "9342e9eb02c823c28da27b94eaf92ca2c9756391c3dec55abf3eed642ecc9ad5"
+          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.32/pixi-web-wasm32.wasm",
+          "sha256": "eaa33caa91b0642cb49a1333c4545dea7387788cf87ff00dc4d8edd585be747c"
         },
         "windows-aarch64": {
-          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.31/pixi-windows-aarch64.dll",
-          "sha256": "062a714a8e2b1598ddba24b05b992c8b36b2b35d35317e63cc93e3ca7c682196"
+          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.32/pixi-windows-aarch64.dll",
+          "sha256": "b5d12b11881c22bae121f6bdff912d8faaff87c372f44f0dd5ca1bf9c4760d09"
         },
         "windows-x86_64": {
-          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.31/pixi-windows-x86_64.dll",
-          "sha256": "e1931abc6d33e8f2c15a59c2f395753d42c898acdac15607915e0499ec64f959"
+          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.32/pixi-windows-x86_64.dll",
+          "sha256": "da146dd1d57192dfbbb39894a7e1f38f73eab618b2eb03d7d496539823b67dec"
         }
       }
     },

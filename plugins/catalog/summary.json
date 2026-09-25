@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated": "2026-09-24",
+  "generated": "2026-09-25",
   "plugins": [
     {
       "id": "atlas",
@@ -62,7 +62,7 @@
         "pixel-art"
       ],
       "date_added": "2026-07-02",
-      "latest_version": "0.1.31"
+      "latest_version": "0.1.32"
     },
     {
       "id": "zig",
