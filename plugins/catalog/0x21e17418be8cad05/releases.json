@@ -1,0 +1,183 @@
+{
+  "schema": 1,
+  "generated": "2026-09-29",
+  "abi_fingerprint": "0x21e17418be8cad05",
+  "releases": {
+    "atlas": {
+      "version": "0.0.14",
+      "min_sdk_version": "0.2.11",
+      "fizzy_sdk_version": "0.2.11",
+      "published": "2026-09-29",
+      "downloads": {
+        "linux-aarch64": {
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.14/atlas-linux-aarch64.so",
+          "sha256": "f66599193e193695363ccaf7ec163c85fcf3262ad31ba05e4ba7e422f6cfeadf"
+        },
+        "linux-x86_64": {
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.14/atlas-linux-x86_64.so",
+          "sha256": "b188ad368b1a511d9050f488c92437a465049e8555870139b2c4e02de7d316ab"
+        },
+        "macos-aarch64": {
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.14/atlas-macos-aarch64.dylib",
+          "sha256": "9e0e7b165ba2325fc58d43eb65eb670ddc2758adbeaec503aecbd2123a4dc9d1"
+        },
+        "macos-x86_64": {
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.14/atlas-macos-x86_64.dylib",
+          "sha256": "91259846aa21cfecfd3a1a9e833f9c1c32888cb9c8a822d4ffad8f12b97fd044"
+        },
+        "web-wasm32": {
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.14/atlas-web-wasm32.wasm",
+          "sha256": "a9d99af52a2e4ad53d27b1a54eb2dc7eba32331d9cc2352cc54a7fed61653d9a"
+        },
+        "windows-aarch64": {
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.14/atlas-windows-aarch64.dll",
+          "sha256": "6f77c50a9f75913d62c156f786722a2f5ae379c68356a22bbea2153e2d031dfa"
+        },
+        "windows-x86_64": {
+          "url": "https://github.com/fizzyedit/atlas/releases/download/v0.0.14/atlas-windows-x86_64.dll",
+          "sha256": "2dee6ad6de89dacc0786de693d194174dd913458a5d40cdeed139690e9036d65"
+        }
+      }
+    },
+    "drive": {
+      "version": "0.1.7",
+      "min_sdk_version": "0.2.11",
+      "fizzy_sdk_version": "0.2.11",
+      "published": "2026-09-29",
+      "downloads": {
+        "linux-aarch64": {
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.7/drive-linux-aarch64.so",
+          "sha256": "b6a9c0b094c9aa5014e491fa8eb89c552b0d00c88c9357491d284a4a156e88a2"
+        },
+        "linux-x86_64": {
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.7/drive-linux-x86_64.so",
+          "sha256": "62368acf4480e256d9f6723e9021c3463f033b8d072c285084384058b302be63"
+        },
+        "macos-aarch64": {
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.7/drive-macos-aarch64.dylib",
+          "sha256": "6bfb5c7897ae588db4003c7f480eb1d0c94e102b7a8ce4ad3d7f26233485a2a2"
+        },
+        "macos-x86_64": {
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.7/drive-macos-x86_64.dylib",
+          "sha256": "4a87f650a9a931a955af36d66d4b543f08854145ce760e1fad4b6436d898d70a"
+        },
+        "web-wasm32": {
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.7/drive-web-wasm32.wasm",
+          "sha256": "8ce4a8aff91e6f08f97181c2df9ba2aae18b685127d7c0f9cf9576037b6e2f02"
+        },
+        "windows-aarch64": {
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.7/drive-windows-aarch64.dll",
+          "sha256": "2704000650876a31034581374949ee90715256f9acbfb81054924201a37a80f6"
+        },
+        "windows-x86_64": {
+          "url": "https://github.com/fizzyedit/drive/releases/download/v0.1.7/drive-windows-x86_64.dll",
+          "sha256": "f3a8e819ea8e30888c6d22c91ec5db89c72e7d2fe855c0f95933a9ebec220ce9"
+        }
+      }
+    },
+    "ghostty": {
+      "version": "0.1.21",
+      "min_sdk_version": "0.2.11",
+      "fizzy_sdk_version": "0.2.11",
+      "published": "2026-09-29",
+      "downloads": {
+        "linux-aarch64": {
+          "url": "https://github.com/fizzyedit/ghostty/releases/download/v0.1.21/ghostty-linux-aarch64.so",
+          "sha256": "6a5bf6a55f7918b18eaf4a03d1721849378f06eea277f11eb4507d281820124c"
+        },
+        "linux-x86_64": {
+          "url": "https://github.com/fizzyedit/ghostty/releases/download/v0.1.21/ghostty-linux-x86_64.so",
+          "sha256": "73480567746139082877a41b43d30a4edc12d7ad2e8894c4bf380848b32cc12f"
+        },
+        "macos-aarch64": {
+          "url": "https://github.com/fizzyedit/ghostty/releases/download/v0.1.21/ghostty-macos-aarch64.dylib",
+          "sha256": "b5dc3ba5e4d783b011070d9e721a743ac786f24f47b1e8b348b95a657a0ef020"
+        },
+        "macos-x86_64": {
+          "url": "https://github.com/fizzyedit/ghostty/releases/download/v0.1.21/ghostty-macos-x86_64.dylib",
+          "sha256": "fa9792fc23922c57466a48270da84433d0dbdfc39ad2ab62d2463a55a15f5f45"
+        },
+        "windows-aarch64": {
+          "url": "https://github.com/fizzyedit/ghostty/releases/download/v0.1.21/ghostty-windows-aarch64.dll",
+          "sha256": "d3801f8d0647a4f88e55e27bdeb25923ed7eeb95354a1272bfb3c4e8b963ac9b"
+        },
+        "windows-x86_64": {
+          "url": "https://github.com/fizzyedit/ghostty/releases/download/v0.1.21/ghostty-windows-x86_64.dll",
+          "sha256": "e5dd106beb3a646396bdf5d3c0392daa9566b61e936e5c10c60cb612e4599821"
+        }
+      }
+    },
+    "pixi": {
+      "version": "0.1.34",
+      "min_sdk_version": "0.2.11",
+      "fizzy_sdk_version": "0.2.11",
+      "published": "2026-09-29",
+      "downloads": {
+        "linux-aarch64": {
+          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.34/pixi-linux-aarch64.so",
+          "sha256": "4bdc95a3b94ba5af52dc1ee5886ebf519399bb27f26793a7854d65e728ccd9c0"
+        },
+        "linux-x86_64": {
+          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.34/pixi-linux-x86_64.so",
+          "sha256": "5f2322646c89ec333b3a5c119fced283e665ee565878d283fa97d39c8615230c"
+        },
+        "macos-aarch64": {
+          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.34/pixi-macos-aarch64.dylib",
+          "sha256": "3c8f14e0cb4a8a7a3a326bedcab9deebb35b7577fcc14f0ea068317715e42694"
+        },
+        "macos-x86_64": {
+          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.34/pixi-macos-x86_64.dylib",
+          "sha256": "39bd89152876d2936841ec19a0a7138415bcfb0483ccbfed566dc35fce824af2"
+        },
+        "web-wasm32": {
+          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.34/pixi-web-wasm32.wasm",
+          "sha256": "7855088c25126799d287eaf3ec480dd3013b794758ace14993908755ab995cae"
+        },
+        "windows-aarch64": {
+          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.34/pixi-windows-aarch64.dll",
+          "sha256": "1d83d7f96d3fa66b1dfce0be9158c81f7ee53484452bcde9a10a54b1fffcdf00"
+        },
+        "windows-x86_64": {
+          "url": "https://github.com/fizzyedit/pixi/releases/download/v0.1.34/pixi-windows-x86_64.dll",
+          "sha256": "72fc724d16e89e4b90ded6f8e978c96cab4ded3c787c649f27deab3323555a37"
+        }
+      }
+    },
+    "zig": {
+      "version": "0.2.26",
+      "min_sdk_version": "0.2.11",
+      "fizzy_sdk_version": "0.2.11",
+      "published": "2026-09-29",
+      "downloads": {
+        "linux-aarch64": {
+          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.26/zig-linux-aarch64.so",
+          "sha256": "b686b53187448f35d1159fe11a217846d59253469c751a4fbf9118107603ad96"
+        },
+        "linux-x86_64": {
+          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.26/zig-linux-x86_64.so",
+          "sha256": "29b990b94b7327a0b3bc540e79f5d9e4ad3bdd2993725c8d63f079ce5b910a3c"
+        },
+        "macos-aarch64": {
+          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.26/zig-macos-aarch64.dylib",
+          "sha256": "6b4f14e4a8251e213b324e240091c3af8ff456a07a5b1021dcabeb599d4662e5"
+        },
+        "macos-x86_64": {
+          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.26/zig-macos-x86_64.dylib",
+          "sha256": "a2399b28f9c8f478329b4190ea5b329a9e66f319e7dda4b6ea3e68e42dd51405"
+        },
+        "web-wasm32": {
+          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.26/zig-web-wasm32.wasm",
+          "sha256": "0cc84a941e5c20bb68c0efa191996d75b055ac15acb185135003a474810d0095"
+        },
+        "windows-aarch64": {
+          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.26/zig-windows-aarch64.dll",
+          "sha256": "671a42add14c7fbf95876397a5576a0fac48dd1d913f39538d581953c2897da7"
+        },
+        "windows-x86_64": {
+          "url": "https://github.com/fizzyedit/zig/releases/download/v0.2.26/zig-windows-x86_64.dll",
+          "sha256": "e3e18823be2c085d5e8e8a6b0c62b66a49a2907bc029201734a827abfa413d33"
+        }
+      }
+    }
+  }
+}
