@@ -7,6 +7,15 @@ name: Aggregate registry
 # Triggers: a registry/store change (reviewed PR merge), a periodic refresh so author manifest
 # updates land without a commit here, and manual runs. The path filter excludes plugins/** and
 # registry.db so the commit-back below never re-triggers the workflow.
+#
+# **A run that commits a new catalog does not deploy it; it starts this workflow again on the
+# commit it made, which does.** Pages names a deployment after the run's commit (GITHUB_SHA) and
+# keeps the first deployment of a name: a second deploy of the same name reports success and is
+# never served. A scheduled run starts on main's head, and when it then commits a refreshed
+# catalog, deploying from that run reuses the head's name, already deployed. So every refresh
+# that found a new plugin release published nothing (2026-10-14: four deployments under
+# `0f57c7e`, the site serving the first, a day old). The commit-back is pushed with this
+# workflow's token, which starts no workflow, so the run asks for its successor itself.
 on:
   push:
     branches: [main]
@@ -23,6 +32,8 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  # To start this workflow again on the commit a refresh makes (see the top).
+  actions: write
 
 concurrency:
   group: pages
@@ -31,6 +42,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      committed: ${{ steps.commit.outputs.committed }}
     env:
       # Pinned so the workaround below targets a known path. Works around a Zig 0.16.0 bug where
       # `zig fetch` fails on zip dependencies (e.g. zig-sqlite's sqlite-amalgamation-*.zip) with
@@ -60,6 +73,7 @@ jobs:
         run: ./zig-out/bin/store export --db ../registry.db --out ../plugins/catalog
 
       - name: Commit registry.db + catalog if changed
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -67,17 +81,28 @@ jobs:
           if ! git diff --quiet --cached; then
             git commit -m "chore: refresh registry.db + plugins/catalog"
             git push
+            echo "committed=true" >> "$GITHUB_OUTPUT"
           else
             echo "registry.db and catalog unchanged"
           fi
 
+      # Deployed from here only when this run's commit is the catalog's; otherwise its successor,
+      # started on the new commit, deploys it (see the top).
       - name: Upload Pages artifact (the plugins/ directory)
+        if: steps.commit.outputs.committed != 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: plugins
 
+      - name: Deploy the refreshed catalog from its own commit
+        if: steps.commit.outputs.committed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run aggregate.yml --repo "$GITHUB_REPOSITORY" --ref main
+
   deploy:
     needs: build
+    if: needs.build.outputs.committed != 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
