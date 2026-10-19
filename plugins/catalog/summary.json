@@ -47,7 +47,7 @@
         "terminal"
       ],
       "date_added": "2026-07-08",
-      "latest_version": "0.1.34"
+      "latest_version": "0.1.35"
     },
     {
       "id": "pixi",
@@ -62,7 +62,7 @@
         "pixel-art"
       ],
       "date_added": "2026-07-02",
-      "latest_version": "0.1.50"
+      "latest_version": "0.1.51"
     },
     {
       "id": "zig",
